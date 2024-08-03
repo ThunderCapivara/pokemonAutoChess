@@ -10,14 +10,27 @@
  */
 import { listen } from "@colyseus/tools"
 
+import { RedisDriver, RedisPresence } from "colyseus"
 // Import Colyseus config
 import app from "./app.config"
 import { initializeMetrics } from "./metrics"
 
 if (process.env.NODE_APP_INSTANCE) {
   initializeMetrics()
-  listen(app)
-  console.log(app.options)
+  app.options = {
+    presence: new RedisPresence(process.env.REDIS_URI),
+    driver: new RedisDriver(process.env.REDIS_URI)
+  }
+  let port = 2567
+  const processNumber = Number(process.env.NODE_APP_INSTANCE || "0")
+  port += processNumber
+  // force "publicAddress" when more than 1 process is available
+  app.options.publicAddress =
+    process.env.SUBDOMAIN + "." + process.env.SERVER_NAME
+
+  // nginx is responsible for forwarding /{port}/ to this process
+  app.options.publicAddress += "/" + port
+  listen(app, port)
 } else {
   listen(app, 9000)
 }

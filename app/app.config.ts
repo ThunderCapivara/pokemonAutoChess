@@ -34,15 +34,7 @@ const clientSrc = __dirname.includes("server")
  * Import your Room files
  */
 
-const serverOptions = {}
-
-if (process.env.NODE_APP_INSTANCE) {
-  serverOptions["presence"] = new RedisPresence()
-  serverOptions["driver"] = new RedisDriver()
-}
-
 export default config({
-  options: serverOptions,
   initializeGameServer: (gameServer) => {
     /**
      * Define your room handlers:

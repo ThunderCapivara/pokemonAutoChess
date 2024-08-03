@@ -11,8 +11,6 @@
 import { listen } from "@colyseus/tools"
 
 import { RedisDriver, RedisPresence } from "colyseus"
-import { nanoid } from "nanoid"
-// Import Colyseus config
 import app from "./app.config"
 import { initializeMetrics } from "./metrics"
 

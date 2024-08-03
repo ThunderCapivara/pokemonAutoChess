@@ -20,8 +20,7 @@ if (process.env.NODE_APP_INSTANCE) {
   initializeMetrics()
   app.options = {
     presence: new RedisPresence(process.env.REDIS_URI),
-    driver: new RedisDriver(process.env.REDIS_URI),
-    publicAddress: nanoid() + "." + process.env.SERVER_NAME
+    driver: new RedisDriver(process.env.REDIS_URI)
   }
   listen(app)
   console.log(app.options)

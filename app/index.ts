@@ -31,6 +31,7 @@ if (process.env.NODE_APP_INSTANCE) {
   // nginx is responsible for forwarding /{port}/ to this process
   app.options.publicAddress += "/" + port
   listen(app, port)
+  console.log(app.options)
 } else {
   listen(app, 9000)
 }

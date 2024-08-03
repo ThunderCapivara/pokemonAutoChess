@@ -32,7 +32,7 @@ export interface INetwork {
 
 const endpoint = `${window.location.protocol.replace("http", "ws")}//${
   window.location.host
-}:2567`
+}`
 logger.info(endpoint)
 
 const initalState: INetwork = {

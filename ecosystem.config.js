@@ -27,7 +27,7 @@ module.exports = {
       },
       vultr : {  
         "user" : "deploy",  
-        "host" : ["45.76.130.174"],
+        "host" : ["192.248.155.174"],
         "ref"  : "origin/prod",  
         "repo" : "git@github.com:keldaanCommunity/pokemonAutoChess.git",  
         "path" : "/home/deploy",  

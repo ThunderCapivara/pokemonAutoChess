@@ -1,11 +1,12 @@
+import path from "path"
 import { monitor } from "@colyseus/monitor"
 import config from "@colyseus/tools"
+import { RedisDriver, RedisPresence } from "colyseus"
 import cors from "cors"
 import express, { ErrorRequestHandler } from "express"
 import basicAuth from "express-basic-auth"
 import admin from "firebase-admin"
 import { connect } from "mongoose"
-import path from "path"
 import { initTilemap } from "./core/design"
 import ItemsStatistics from "./models/mongo-models/items-statistic"
 import Meta from "./models/mongo-models/meta"
@@ -35,10 +36,10 @@ const clientSrc = __dirname.includes("server")
 
 const serverOptions = {}
 
-// if (process.env.NODE_APP_INSTANCE) {
-//   serverOptions["presence"] = new RedisPresence()
-//   serverOptions["driver"] = new RedisDriver()
-// }
+if (process.env.NODE_APP_INSTANCE) {
+  serverOptions["presence"] = new RedisPresence()
+  serverOptions["driver"] = new RedisDriver()
+}
 
 export default config({
   options: serverOptions,

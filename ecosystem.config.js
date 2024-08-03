@@ -5,7 +5,7 @@ module.exports = {
     apps: [{
         name        : "colyseus",
         script      : "./app/public/dist/server/app/index.js", // your entrypoint file
-        instances   : 1,
+        instances   : os.cpus().length,
         exec_mode   : "fork",         // IMPORTANT: do not use cluster mode.
         watch       : false,
         time        : true,

@@ -17,7 +17,7 @@ import { initializeMetrics } from "./metrics"
 if (process.env.NODE_APP_INSTANCE) {
   initializeMetrics()
   listen(app)
-  console.log(app.options)
+  console.log(app.options?.publicAddress)
 } else {
   listen(app, 9000)
 }
